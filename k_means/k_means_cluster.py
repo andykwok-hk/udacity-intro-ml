@@ -69,8 +69,13 @@ print(data[:,1].max())
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
 from sklearn.cluster import KMeans
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+finance_features = scaler.fit_transform(finance_features)
+
 kmeans = KMeans(n_clusters = 2).fit(finance_features)
 pred = kmeans.predict(finance_features)
+
 
 
 ### rename the "name" parameter when you change the number of features

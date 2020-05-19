@@ -25,7 +25,13 @@ data = featureFormat(data_dict, features_list)
 labels, features = targetFeatureSplit(data)
 
 
-
-### your code goes here 
-
-
+### your code goes here
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_score, recall_score
+import numpy as np
+train_features, test_features, train_labels, test_labels = train_test_split(features, labels, test_size = 0.3, random_state=42)
+clf = DecisionTreeClassifier()
+clf = clf.fit(train_features, train_labels)
+print("recall score is: %f" % recall_score(test_labels, clf.predict(test_features)))
+print("precision score is: %f" % precision_score(test_labels, clf.predict(test_features)))
